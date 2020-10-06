@@ -7,6 +7,7 @@ import (
 
 	"github.com/golang/protobuf/jsonpb"
 	"github.com/golang/protobuf/proto"
+	"github.com/sunimalherath/protocol_buffer/protoc-01/src/enum_example/enumpb"
 	"github.com/sunimalherath/protocol_buffer/protoc-01/src/simple/simplepb"
 )
 
@@ -15,6 +16,16 @@ func main() {
 
 	readAndWriteToFile(message)
 	readAndWriteToJSON(message)
+
+	doEnum()
+}
+
+func doEnum() {
+	em := enumpb.EnumMessage{
+		Id:           283,
+		DayOfTheWeek: enumpb.DayOfTheWeek_MONDAY,
+	}
+	fmt.Println(em)
 }
 
 func readAndWriteToFile(message proto.Message) {
