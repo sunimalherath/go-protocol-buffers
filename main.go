@@ -7,6 +7,7 @@ import (
 
 	"github.com/golang/protobuf/jsonpb"
 	"github.com/golang/protobuf/proto"
+	"github.com/sunimalherath/protocol_buffer/protoc-01/src/complex/complexpb"
 	"github.com/sunimalherath/protocol_buffer/protoc-01/src/enum_example/enumpb"
 	"github.com/sunimalherath/protocol_buffer/protoc-01/src/simple/simplepb"
 )
@@ -18,6 +19,29 @@ func main() {
 	readAndWriteToJSON(message)
 
 	doEnum()
+
+	doComplex()
+}
+
+func doComplex() {
+	cm := complexpb.ComplexMessage{
+		OneDummy: &complexpb.DummyMessage{
+			Id:   34,
+			Name: "Message One",
+		},
+		MultipleDummy: []*complexpb.DummyMessage{
+			&complexpb.DummyMessage{
+				Id:   35,
+				Name: "Message Two",
+			},
+			&complexpb.DummyMessage{
+				Id:   35,
+				Name: "Message Three",
+			},
+		},
+	}
+
+	fmt.Println(cm)
 }
 
 func doEnum() {
